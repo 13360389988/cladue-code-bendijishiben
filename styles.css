@@ -1,0 +1,262 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+}
+
+.todo-wrapper {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+.input-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#todoInput {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+#todoInput:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+#addBtn {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#addBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.filter-section {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    border: 2px solid #e0e0e0;
+    background: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+#todoList {
+    list-style: none;
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    animation: fadeIn 0.3s ease-out;
+    transition: all 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.todo-item:hover {
+    background: #f0f0f0;
+    transform: translateX(5px);
+}
+
+.todo-item.completed .todo-text {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.todo-checkbox {
+    width: 22px;
+    height: 22px;
+    margin-right: 14px;
+    cursor: pointer;
+    accent-color: #667eea;
+}
+
+.todo-text {
+    flex: 1;
+    font-size: 16px;
+    color: #333;
+    word-break: break-word;
+}
+
+.delete-btn {
+    background: #ff4757;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 13px;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.todo-item:hover .delete-btn {
+    opacity: 1;
+}
+
+.delete-btn:hover {
+    transform: scale(1.1);
+    background: #ff3344;
+}
+
+.stats-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+#taskCount {
+    color: #888;
+    font-size: 14px;
+}
+
+#clearCompleted {
+    padding: 8px 16px;
+    background: transparent;
+    color: #ff4757;
+    border: 1px solid #ff4757;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+#clearCompleted:hover {
+    background: #ff4757;
+    color: white;
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .todo-wrapper {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .input-section {
+        flex-direction: column;
+    }
+
+    #addBtn {
+        width: 100%;
+    }
+
+    .filter-section {
+        flex-wrap: wrap;
+    }
+
+    .stats-section {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #clearCompleted {
+        width: 100%;
+    }
+}
+
+/* 滚动条样式 */
+#todoList::-webkit-scrollbar {
+    width: 6px;
+}
+
+#todoList::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+#todoList::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+#todoList::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
